@@ -1001,17 +1001,17 @@ static void hci_power_on(struct work_struct *work)
 	BT_DBG("%s", hdev->name);
 
 	err = hci_dev_open(hdev->id);
-	if (err && err != -EALREADY)
+	if (err < 0) {
+		mgmt_set_powered_failed(hdev, err);
 		return;
+	}
 
-	if (test_bit(HCI_AUTO_OFF, &hdev->flags) &&
-				hdev->dev_type == HCI_BREDR)
-		mod_timer(&hdev->off_timer,
-				jiffies + msecs_to_jiffies(AUTO_OFF_TIMEOUT));
+	if (test_bit(HCI_AUTO_OFF, &hdev->dev_flags))
+		queue_delayed_work(hdev->req_workqueue, &hdev->power_off,
+				   HCI_AUTO_OFF_TIMEOUT);
 
-	if (test_and_clear_bit(HCI_SETUP, &hdev->flags) &&
-				hdev->dev_type == HCI_BREDR)
-		mgmt_index_added(hdev->id);
+	if (test_and_clear_bit(HCI_SETUP, &hdev->dev_flags))
+		mgmt_index_added(hdev);
 }
 
 static void hci_power_off(struct work_struct *work)
