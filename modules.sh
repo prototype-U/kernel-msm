@@ -1,0 +1,19 @@
+cp drivers/input/misc/gpio_event.ko modules/
+cp drivers/input/evbug.ko modules/
+cp drivers/input/misc/gpio_input.ko modules/
+cp drivers/crypto/msm/qcedev.ko modules/
+cp arch/arm/mach-msm/dma_test.ko modules/
+cp arch/arm/oprofile/oprofile.ko modules/
+cp drivers/char/rdbg.ko modules/
+cp drivers/crypto/msm/qcrypto.ko modules/
+cp drivers/spi/spidev.ko modules/
+cp drivers/scsi/scsi_wait_scan.ko modules/
+cp drivers/mmc/card/mmc_test.ko modules/
+cp drivers/input/misc/gpio_output.ko modules/
+cp drivers/input/misc/gpio_matrix.ko modules/
+cp drivers/input/misc/gpio_axis.ko modules/
+cp arch/arm/mach-msm/msm-buspm-dev.ko modules/
+cp crypto/ansi_cprng.ko modules/
+cp drivers/media/radio/radio-iris-transport.ko modules/
+cp arch/arm/mach-msm/reset_modem.ko modules/
+
